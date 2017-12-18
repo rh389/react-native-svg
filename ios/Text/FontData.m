@@ -30,6 +30,9 @@ FontData *FontData_Defaults;
 + (instancetype)Defaults {
     if (!FontData_Defaults) {
         FontData *self = [FontData alloc];
+        if (self == nil) {
+            NSLog((@"[react-native-svg] ALLOC FAILED %s [Line %d] "), __PRETTY_FUNCTION__, __LINE__);
+        }
         self->fontData = nil;
         self->fontFamily = @"";
         self->fontStyle = FontStyleNormal;
@@ -62,6 +65,9 @@ FontData *FontData_Defaults;
                               parent:(FontData *)parent
                                scale:(double)scale {
     FontData *data = [FontData alloc];
+    if (data == nil) {
+        NSLog((@"[react-native-svg] ALLOC FAILED %s [Line %d] "), __PRETTY_FUNCTION__, __LINE__);
+    }
     double parentFontSize = parent->fontSize;
     if ([font objectForKey:FONT_SIZE]) {
         NSString *string = [font objectForKey:FONT_SIZE];

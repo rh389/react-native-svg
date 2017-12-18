@@ -15,6 +15,9 @@ static NSRegularExpression* percentageRegExp;
 +(void)initialize
 {
     percentageRegExp = [[NSRegularExpression alloc] initWithPattern:@"^(\\-?\\d+(?:\\.\\d+)?)%$" options:0 error:nil];
+    if (percentageRegExp == nil) {
+        NSLog((@"[react-native-svg] ALLOC FAILED %s [Line %d] "), __PRETTY_FUNCTION__, __LINE__);
+    }
 }
 
 + (CGFloat)stringToFloat:(NSString *)string relative:(CGFloat)relative offset:(CGFloat)offset

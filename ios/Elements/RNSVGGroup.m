@@ -63,6 +63,9 @@
 
     _glyphContext = [[GlyphContext alloc] initWithScale:1 width:width
                                                            height:height];
+    if (_glyphContext == nil) {
+        NSLog((@"[react-native-svg] ALLOC FAILED %s [Line %d] "), __PRETTY_FUNCTION__, __LINE__);
+    }
 }
 
 - (GlyphContext *)getGlyphContext

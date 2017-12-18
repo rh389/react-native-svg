@@ -183,6 +183,9 @@
 {
     if (!_clipPaths) {
         _clipPaths = [[NSMutableDictionary alloc] init];
+        if (_clipPaths == nil) {
+            NSLog((@"[react-native-svg] ALLOC FAILED %s [Line %d] "), __PRETTY_FUNCTION__, __LINE__);
+        }
     }
     [_clipPaths setObject:clipPath forKey:clipPathName];
 }
@@ -196,6 +199,9 @@
 {
     if (!_templates) {
         _templates = [[NSMutableDictionary alloc] init];
+        if (_templates == nil) {
+            NSLog((@"[react-native-svg] ALLOC FAILED %s [Line %d] "), __PRETTY_FUNCTION__, __LINE__);
+        }
     }
     [_templates setObject:template forKey:templateName];
 }
@@ -210,6 +216,9 @@
 {
     if (!_painters) {
         _painters = [[NSMutableDictionary alloc] init];
+        if (_painters == nil) {
+            NSLog((@"[react-native-svg] ALLOC FAILED %s [Line %d] "), __PRETTY_FUNCTION__, __LINE__);
+        }
     }
     [_painters setObject:painter forKey:painterName];
 }

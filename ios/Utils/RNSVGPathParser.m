@@ -31,9 +31,15 @@
 {
     if (self = [super init]) {
         NSRegularExpression* decimalRegularExpression = [[NSRegularExpression alloc] initWithPattern:@"(\\.\\d+)(?=\\-?\\.)" options:0 error:nil];
+        if (decimalRegularExpression == nil) {
+            NSLog((@"[react-native-svg] ALLOC FAILED %s [Line %d] "), __PRETTY_FUNCTION__, __LINE__);
+        }
         _originD = d;
         _d = [decimalRegularExpression stringByReplacingMatchesInString:d options:0 range:NSMakeRange(0, [d length]) withTemplate:@"$1,"];
         _pathRegularExpression = [[NSRegularExpression alloc] initWithPattern:@"[a-df-z]|[\\-+]?(?:[\\d.]e[\\-+]?|[^\\s\\-+,a-z])+" options:NSRegularExpressionCaseInsensitive error:nil];
+        if (_pathRegularExpression == nil) {
+            NSLog((@"[react-native-svg] ALLOC FAILED %s [Line %d] "), __PRETTY_FUNCTION__, __LINE__);
+        }
     }
     return self;
 }
@@ -43,6 +49,9 @@
     CGMutablePathRef path = CGPathCreateMutable();
     NSArray<NSTextCheckingResult *>* results = [_pathRegularExpression matchesInString:_d options:0 range:NSMakeRange(0, [_d length])];
     _bezierCurves = [[NSMutableArray alloc] init];
+    if (_bezierCurves == nil) {
+        NSLog((@"[react-native-svg] ALLOC FAILED %s [Line %d] "), __PRETTY_FUNCTION__, __LINE__);
+    }
     unsigned long count = [results count];
 
     if (count) {

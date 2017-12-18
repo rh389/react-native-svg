@@ -28,6 +28,9 @@
 {
     NSArray<NSString *> *points = @[self.fx, self.fy, self.rx, self.ry, self.cx, self.cy];
     RNSVGPainter *painter = [[RNSVGPainter alloc] initWithPointsArray:points];
+    if (painter == nil) {
+        NSLog((@"[react-native-svg] ALLOC FAILED %s [Line %d] "), __PRETTY_FUNCTION__, __LINE__);
+    }
     [painter setUnits:self.gradientUnits];
     [painter setTransform:self.gradientTransform];
     [painter setRadialGradientColors:self.gradient];
